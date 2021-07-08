@@ -1,2 +1,2 @@
-# BettEcommerce
-A simple ecommerce website for sell betta fish using ASP.NET core.
+# MyEcommerce
+A simple ecommerce website for sell good using ASP.NET core.
