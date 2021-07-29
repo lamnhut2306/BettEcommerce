@@ -11,7 +11,7 @@ namespace Rookie.MyEcommerce.Business.Interfaces
 
         Task<IEnumerable<OrderStatusDto>> GetAllAsync();
 
-        Task UpdateAsync(OrderStatusDto entity);
+        Task UpdateAsync(OrderStatusDto orderStatusDto);
 
     }
 }

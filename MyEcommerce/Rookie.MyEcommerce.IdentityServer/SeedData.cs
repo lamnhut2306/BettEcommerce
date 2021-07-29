@@ -36,6 +36,44 @@ namespace Rookie.MyEcommerce.IdentityServer
                     context.Database.Migrate();
 
                     var userMgr = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+                    var roleMgr = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+                    //var userRoleMgr = scope.ServiceProvider.GetRequiredService<IdentityUserRole>
+                    var admin = roleMgr.FindByNameAsync("admin").Result;
+
+                    if (admin == null)
+                    {
+                        admin = new ApplicationRole
+                        {
+                            Name = "admin",
+                        };
+
+                        var result = roleMgr.CreateAsync(admin).Result;
+                        if (!result.Succeeded)
+                        {
+                            throw new Exception(result.Errors.First().Description);
+                        }
+                        Log.Debug("admin is created");
+                    }
+
+                    var customer = roleMgr.FindByNameAsync("customer").Result;
+                    if (customer == null) 
+                    {
+                        customer = new ApplicationRole()
+                        {
+                            Name = "customer"
+                        };
+
+                        var result = roleMgr.CreateAsync(customer).Result;
+                        
+                        if (!result.Succeeded)
+                        {
+                            throw new Exception(result.Errors.First().Description);
+                        }
+
+                        Log.Debug("customer is created");
+                    }
+
+
                     var alice = userMgr.FindByNameAsync("alice").Result;
                     if (alice == null)
                     {
@@ -61,6 +99,7 @@ namespace Rookie.MyEcommerce.IdentityServer
                         {
                             throw new Exception(result.Errors.First().Description);
                         }
+
                         Log.Debug("alice created");
                     }
                     else
@@ -94,6 +133,7 @@ namespace Rookie.MyEcommerce.IdentityServer
                         {
                             throw new Exception(result.Errors.First().Description);
                         }
+
                         Log.Debug("bob created");
                     }
                     else

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Rookie.MyEcommerce.Business.Interfaces;
 using Rookie.MyEcommerce.Contracts.Constants;
 using Rookie.MyEcommerce.Contracts.Dtos;
@@ -13,6 +14,7 @@ namespace Rookie.MyEcommerce.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = AppRole.Customer)]
     public class CartController : ControllerBase
     {
         private readonly ICartService _cartService;

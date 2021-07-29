@@ -13,7 +13,7 @@ namespace Rookie.MyEcommerce.Contracts.Dtos
         public DateTime SubscriptionDate { get; set; }
         public AddressDto Address { get; set; }
         public string PhoneNumber { get; set; }
-        public virtual ICollection<OrderItemDto> OrderItems { get; set; }
-        public virtual ICollection<OrderHistoryDto> OrderHistories { get; set; }
+        public virtual IEnumerable<OrderItemDto> OrderItems { get; set; }
+        public virtual IEnumerable<OrderHistoryDto> OrderHistories { get; set; }
     }
 }

@@ -14,10 +14,16 @@ namespace Rookie.MyEcommerce.Business
         {
             services.AddDataAccessorLayer(configuration);
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
+
             services.AddTransient(typeof(IBaseRepository<>), typeof(BaseRepository<>));
             services.AddTransient<ICategoryService, CategoryService>();
             services.AddTransient<ICartService, CartService>();
+            services.AddTransient<ICartItemService, CartItemService>();
             services.AddTransient<IOrderService, OrderService>();
+            services.AddTransient<IOrderItemService, OrderItemService>();
+            services.AddTransient<IOrderHistoryService, OrderHistoryService>();
+            services.AddTransient<IOrderStatusService, OrderStatusService>();
+            services.AddTransient<IDbImageService, DbImageService>();
             services.AddTransient<IProductService, ProductService>();
             services.AddTransient<IProductRatingService, ProductRatingService>();
         }

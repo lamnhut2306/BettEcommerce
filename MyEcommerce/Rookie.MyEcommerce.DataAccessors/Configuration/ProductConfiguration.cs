@@ -27,6 +27,7 @@ namespace Rookie.MyEcommerce.DataAccessors.Configuration
                 .OnDelete(DeleteBehavior.Cascade);
             builder.HasMany(p => p.Images)
                 .WithOne()
+                .HasForeignKey(i => i.ProductId)
                 .OnDelete(DeleteBehavior.Cascade);
 
             //properties

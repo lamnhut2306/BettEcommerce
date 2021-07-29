@@ -9,8 +9,9 @@ namespace Rookie.MyEcommerce.Contracts.Dtos
     public class ImageDto
     {
         public Guid Id { get; set; }
-        public Guid ReferenceId { get; set; }
         public string Uri { get; set; }
         public int Position { get; set; }
+        public Guid? ProductId { get; set; }
+        public Guid? ProductRatingId { get; set; }
     }
 }

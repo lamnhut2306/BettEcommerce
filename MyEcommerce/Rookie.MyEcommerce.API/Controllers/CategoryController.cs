@@ -1,4 +1,5 @@
 ﻿using EnsureThat;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Rookie.MyEcommerce.Business.Interfaces;
 using Rookie.MyEcommerce.Contracts.Constants;
@@ -14,6 +15,7 @@ namespace Rookie.MyEcommerce.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class CategoryController : ControllerBase
     {
         private readonly ICategoryService _categoryService;
@@ -25,6 +27,7 @@ namespace Rookie.MyEcommerce.API.Controllers
 
         // GET: api/<CategoryController>
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IEnumerable<CategoryDto>> GetAllAsync()
             => await _categoryService.GetAllAsync();
 
@@ -35,7 +38,7 @@ namespace Rookie.MyEcommerce.API.Controllers
 
         // POST api/<CategoryController>
         [HttpPost]
-        public async Task<ActionResult<CategoryDto>> AddAsync(CategoryDto categoryDto)
+        public async Task<ActionResult<CategoryDto>> AddAsync([FromBody]CategoryDto categoryDto)
         {
             Ensure.Any.IsNotNull(categoryDto.Name);
             Ensure.Any.IsNotNull(categoryDto.Description);
@@ -56,7 +59,10 @@ namespace Rookie.MyEcommerce.API.Controllers
 
         // DELETE api/<CategoryController>/5
         [HttpDelete("{id}")]
-        public async Task DeleteAsync(Guid id)
-            => await _categoryService.DeleteAsync(id);
+        public async Task<ActionResult> DeleteAsync(Guid id)
+        {
+            await _categoryService.DeleteAsync(id);
+            return NoContent();
+        }
     }
 }

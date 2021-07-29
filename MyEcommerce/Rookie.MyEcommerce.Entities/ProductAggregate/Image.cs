@@ -6,5 +6,8 @@ namespace Rookie.MyEcommerce.Entities.ProductAggregate
     {
         public string Uri { get; set; }
         public int Position { get; set; }
+        public Guid? ProductId { get; set; }
+        public Guid? ProductRatingId { get; set; }
+
     }
 }

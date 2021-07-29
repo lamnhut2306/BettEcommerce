@@ -18,8 +18,8 @@ namespace Rookie.MyEcommerce.DataAccessors.Configuration
                 .OnDelete(DeleteBehavior.NoAction);
             builder.HasMany(pr => pr.Images)
                 .WithOne()
+                .HasForeignKey(i => i.ProductRatingId)
                 .OnDelete(DeleteBehavior.Cascade);
-            
 
             builder.Property(pr => pr.Rating)
                 .IsRequired();

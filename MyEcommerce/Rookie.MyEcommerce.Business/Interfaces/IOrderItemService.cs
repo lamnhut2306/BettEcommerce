@@ -10,7 +10,10 @@ namespace Rookie.MyEcommerce.Business.Interfaces
     public interface IOrderItemService
     {
         Task<OrderItemDto> AddAsync(OrderItemDto orderItemDto);
-        Task<IEnumerable<OrderItemDto>> GetOrderItemsByOrderAsync(Guid orderId);
+        Task<IEnumerable<OrderItemDto>> GetAllByOrderAsync(Guid orderId);
+        Task<OrderItemDto> GetByIdAsync(Guid id);
+        Task UpdateAsync(OrderItemDto orderItemDto);
+        Task DeleteAsync(Guid id);
 
     }
 }

@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.8">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -13,12 +14,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Services\" />
+    <ProjectReference Include="..\Rookie.MyEcommerce.Business\Rookie.MyEcommerce.Business.csproj" />
+    <ProjectReference Include="..\Rookie.MyEcommerce.Contracts\Rookie.MyEcommerce.Contracts.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Rookie.MyEcommerce.Business\Rookie.MyEcommerce.Business.csproj" />
-    <ProjectReference Include="..\Rookie.MyEcommerce.Contracts\Rookie.MyEcommerce.Contracts.csproj" />
+    <Folder Include="wwwroot\Image\" />
   </ItemGroup>
 
 </Project>

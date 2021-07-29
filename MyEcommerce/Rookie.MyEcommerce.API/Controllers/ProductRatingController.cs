@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Rookie.MyEcommerce.Business.Interfaces;
 using Rookie.MyEcommerce.Contracts.Constants;
@@ -12,6 +13,7 @@ namespace Rookie.MyEcommerce.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = AppRole.Customer)]
     public class ProductRatingController : ControllerBase
     {
         private readonly IProductRatingService _productRatingService;
@@ -22,12 +24,14 @@ namespace Rookie.MyEcommerce.API.Controllers
         }
 
         [HttpGet("{productId}")]
+        [AllowAnonymous]
         public async Task<IEnumerable<ProductRatingDto>> GetAllByProductAsync(Guid productId)
         {
             return await _productRatingService.GetAllByProductAsync(productId);
         }
 
         [HttpGet("{id}")]
+        [AllowAnonymous]
         public async Task<ProductRatingDto> GetByIdAsync(Guid id)
         {
             return await _productRatingService.GetByIdAsync(id);

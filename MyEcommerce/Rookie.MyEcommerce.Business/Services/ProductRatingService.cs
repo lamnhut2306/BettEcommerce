@@ -41,9 +41,10 @@ namespace Rookie.MyEcommerce.Business.Services
             return _mapper.Map<List<ProductRatingDto>>(productRatings);
         }
 
-        public Task<ProductRatingDto> GetByIdAsync(Guid id)
+        public async Task<ProductRatingDto> GetByIdAsync(Guid id)
         {
-            throw new NotImplementedException();
+            var productRating = await _baseRepository.GetByIdAsync(id);
+            return _mapper.Map<ProductRatingDto>(productRating);
         }
 
         public async Task<PagedResponseModel<ProductRatingDto>> PagedQueryAsync(string name, int page, int limit)
